@@ -1,10 +1,11 @@
-import User from "../models/user.model";
+import User from "../models/User.js";
 import bcrypt from "bcryptjs";
+import { generateToken } from "../lib/utils.js";
 export const signup = async (req, res) => {
 
-    const { fullName, emal, password } = req.body;
+    const { fullName, email, password } = req.body;
     try {
-        if (!fullName || !emal || !password) {
+        if (!fullName || !email || !password) {
             return res.status(400).json({ message: " All fields are required" })
         }
         if (password.length < 6) {
@@ -26,7 +27,7 @@ export const signup = async (req, res) => {
             password: hashedPassword
         })
         if (newUser) {
-            generateTokken(newUser._id, res)
+            generateToken(newUser._id, res)
             await newUser.save()
             res.status(201).json({
 

@@ -6,12 +6,9 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-
-
     fullName: {
         type: String,
         required: true,
-
     },
     password: {
         type: String,
@@ -20,10 +17,10 @@ const userSchema = new mongoose.Schema({
     },
     profilePic: {
         type: String,
-        type: String,
         default: ""
     },
 },
-    { timestamps: true });// createAt vaf updateAt
+    { timestamps: true });
+
 const User = mongoose.model("User", userSchema);
 export default User;
